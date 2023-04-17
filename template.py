@@ -4,10 +4,10 @@ from pathlib import Path
 import logging
 
 logging.basicConfig(
-    level = logging.INFO,
+    level = logging.INFO,    
     format = "[%(asctime)s: %(levelname)s]: %(message)s"
 )
-
+                              
 while True:
     project_name = input("Enter your project name: ")
     if project_name !='':
@@ -47,3 +47,5 @@ for filepath in list_of_files:
             logging.info(f"Creating a new file: {filename} for path: {filepath}")
     else:
         logging.info(f"file is already present at: {filepath}")
+
+        
