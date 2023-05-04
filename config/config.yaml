@@ -1,4 +1,4 @@
-Training_pipeline_config:
+training_pipeline_config:
   pipeline_name: visa
   artifact_dir: artifact
 
