@@ -1,4 +1,3 @@
-
 import os, sys
 import pandas as pd
 import numpy as np
@@ -34,11 +33,11 @@ class DataIngestion:
 
             raw_file_path = os.path.join(raw_data_dir, us_visa_file_name)
 
-            logging.info(f"Downloading file from :[{download_url}] into :[{raw_file_path}]")
-                
+            logging.info(
+                f"Downloading file from :[{download_url}] into :[{raw_file_path}]")
             urllib.request.urlretrieve(download_url, raw_file_path)
-            logging.info(f"File :[{raw_file_path}] has been downloaded successfully.")
-                
+            logging.info(
+                f"File :[{raw_file_path}] has been downloaded successfully.")
             return raw_file_path
 
         except Exception as e:
@@ -98,7 +97,7 @@ class DataIngestion:
 
         except Exception as e:
             raise CustomException(e, sys) from e
-        
+
     def initiate_data_ingestion(self):
         try:
             raw_file_path = self.download_data()
