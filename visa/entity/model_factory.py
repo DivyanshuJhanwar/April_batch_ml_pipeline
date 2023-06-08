@@ -55,7 +55,7 @@ def evaluate_classification_model(model_list: list, X_train: np.ndarray, y_train
     It returned a named tuple
     
     MetricInfoArtifact = namedtuple("MetricInfo",
-                                ["model_name", "model_object", "train_f1", "train_f1", "train_accuracy",
+                                ["model_name", "model_object", "train_f1", "test_f1", "train_accuracy",
                                  "test_accuracy", "model_accuracy", "index_number"])
     """
     try:
@@ -70,17 +70,19 @@ def evaluate_classification_model(model_list: list, X_train: np.ndarray, y_train
             y_train_pred = model.predict(X_train)
             y_test_pred = model.predict(X_test)
 
-            # Calculating r squared score on training and testing dataset
+            # Calculating accuracy score on training and testing dataset
             train_acc = accuracy_score(y_train, y_train_pred)
             test_acc = accuracy_score(y_test, y_test_pred)
 
-            # Calculating mean squared error on training and testing dataset
+            # Calculating F1 score on training and testing dataset
             train_f1 = f1_score(y_train, y_train_pred)
             test_f1 = f1_score(y_test, y_test_pred)
 
             # Calculating harmonic mean of train_accuracy and test_accuracy
             model_accuracy = (2 * (train_acc * test_acc)) / (train_acc + test_acc)
             diff_test_train_acc = abs(test_acc - train_acc)
+
+# F1 score = Precision and Recall             
 
             # logging all important metric
             logging.info(f"{'>>' * 30} Score {'<<' * 30}")
@@ -89,8 +91,8 @@ def evaluate_classification_model(model_list: list, X_train: np.ndarray, y_train
 
             logging.info(f"{'>>' * 30} F1 Score {'<<' * 30}")
             logging.info(f"Diff test train accuracy: [{diff_test_train_acc}].")
-            logging.info(f"Train root mean squared error: [{train_f1}].")
-            logging.info(f"Test root mean squared error: [{test_f1}].")
+            logging.info(f"Train F1 Accuracy: [{train_f1}].")
+            logging.info(f"Test F1 Accuracy: [{test_f1}].")
 
             # if model accuracy is greater than base accuracy and train and test score is within certain threshold
             # we will accept that model as accepted model
